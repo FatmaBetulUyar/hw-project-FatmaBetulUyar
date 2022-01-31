@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,10 +19,17 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotNull(message = "Account number can not be null !")
     private String accountNumber;
 
+    @NotNull(message = "Balance can not be null !")
     private Float balance;
+
+    @NotNull(message = "Bank can not be null !")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "bank_id",referencedColumnName = "id")
+    private Bank bank;
+
 
 
 
