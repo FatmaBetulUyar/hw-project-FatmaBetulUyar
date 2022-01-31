@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 
     @Id
@@ -38,19 +38,19 @@ public class User {
     @NotNull(message = "Phone can not be null !")
     private String phone;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    /*@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id",referencedColumnName = "id")
-    private Account account;
+    private Account account;*/
 
     @JsonBackReference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "userTransaction", cascade = CascadeType.MERGE)
     private List<Transaction> transactions;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "userTransfer", cascade = CascadeType.MERGE)
     private List<Transfer> transfers;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "userAppointment", cascade = CascadeType.MERGE)
     private List<Appointment> appointments;
 }

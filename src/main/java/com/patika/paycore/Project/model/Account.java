@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "account")
+@Table(name = "accounts")
 public class Account {
 
     @Id
@@ -24,6 +24,9 @@ public class Account {
 
     @NotNull(message = "Balance can not be null !")
     private Float balance;
+
+    /*@OneToOne(mappedBy = "account")
+    private User user;*/
 
     @NotNull(message = "Bank can not be null !")
     @OneToOne(cascade = CascadeType.MERGE)

@@ -16,12 +16,12 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name="recipient")
+@Table(name="recipients")
 public class Recipient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Integer id;
 
     @NotNull(message = "First Name can not be null !")
     private String firstName;

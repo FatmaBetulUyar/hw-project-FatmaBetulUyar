@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "transaction")
+@Table(name = "transactions")
 public class Transaction {
 
     @Id
@@ -40,6 +40,6 @@ public class Transaction {
     @JsonManagedReference
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private User userTransaction;
 
 }

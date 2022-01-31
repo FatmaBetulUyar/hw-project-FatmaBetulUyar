@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "transfer")
+@Table(name = "transfers")
 public class Transfer {
 
     @Id
@@ -39,7 +39,7 @@ public class Transfer {
     @JsonManagedReference
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private User userTransfer;
 
     @NotNull(message = "Recipient can not be null !")
     @JsonManagedReference
