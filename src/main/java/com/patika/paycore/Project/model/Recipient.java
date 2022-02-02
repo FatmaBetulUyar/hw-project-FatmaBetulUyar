@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name="recipients")
+@Table(name="recipient")
 public class Recipient {
 
     @Id

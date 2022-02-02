@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "transfers")
+@Table(name = "transfer")
 public class Transfer {
 
     @Id
