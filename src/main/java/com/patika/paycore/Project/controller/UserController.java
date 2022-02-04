@@ -4,10 +4,9 @@ import com.patika.paycore.Project.model.User;
 import com.patika.paycore.Project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,5 +26,23 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping(value = "/{id]")
+    public User getUser(@PathVariable Integer id){
+        return userService.getUser(id);
+    }
+    @PostMapping(value = "/add")
+        public void saveUser(@Valid @RequestBody User user){
+            userService.addUser(user);
+        }
+
+    @PutMapping(value = "/update/{id}")
+    public User updateAirport(@PathVariable Integer id, @Valid @RequestBody User user) {
+        return userService.updateUser(id,user);
+    }
+
+    @DeleteMapping(value = "/delete")
+    public boolean deleteAirport(@RequestParam Integer id) {
+        return userService.deleteUser(id);
+    }
 
 }
