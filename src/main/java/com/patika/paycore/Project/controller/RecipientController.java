@@ -1,9 +1,7 @@
 package com.patika.paycore.Project.controller;
 
 
-import com.patika.paycore.Project.model.Bank;
-import com.patika.paycore.Project.model.Recipient;
-import com.patika.paycore.Project.model.Transaction;
+import com.patika.paycore.Project.model.entity.Recipient;
 import com.patika.paycore.Project.service.RecipientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

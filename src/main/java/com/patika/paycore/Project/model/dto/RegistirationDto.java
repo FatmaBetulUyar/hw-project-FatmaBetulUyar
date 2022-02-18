@@ -1,12 +1,16 @@
 package com.patika.paycore.Project.model.dto;
 
-import com.patika.paycore.Project.model.Role;
+import lombok.Data;
 
-import java.util.List;
+import javax.validation.constraints.Email;
 
+@Data
 public class RegistirationDto {
 
     private String username;
+
+    @Email(message = "Email not valid")
+    private String email;
 
     private String password;
 

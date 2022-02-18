@@ -1,6 +1,7 @@
-package com.patika.paycore.Project.model;
+package com.patika.paycore.Project.model.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,8 @@ public class Transaction {
     private Float amount;
 
   //  @NotNull(message = "Transaction date can not be null !")
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name="transaction_date")
     private Date transactionDate;
 
@@ -42,7 +45,7 @@ public class Transaction {
  //   @NotNull(message = "User can not be null !")
     @JsonManagedReference
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Customer userTransaction;
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer customer;
 
 }

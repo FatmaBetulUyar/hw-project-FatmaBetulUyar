@@ -1,6 +1,6 @@
 package com.patika.paycore.Project.repository;
 
-import com.patika.paycore.Project.model.Account;
+import com.patika.paycore.Project.model.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

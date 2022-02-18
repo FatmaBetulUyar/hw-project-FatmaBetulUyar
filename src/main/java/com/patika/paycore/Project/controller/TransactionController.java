@@ -1,9 +1,7 @@
 package com.patika.paycore.Project.controller;
 
 import com.patika.paycore.Project.exception.InsufficientBalanceException;
-import com.patika.paycore.Project.model.Bank;
-import com.patika.paycore.Project.model.Transaction;
-import com.patika.paycore.Project.model.Transfer;
+import com.patika.paycore.Project.model.entity.Transaction;
 import com.patika.paycore.Project.model.dto.TransactionDto;
 import com.patika.paycore.Project.service.TransactionService;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.patika.paycore.Project.service;
 
-import com.patika.paycore.Project.model.Customer;
+import com.patika.paycore.Project.model.entity.Customer;
 import com.patika.paycore.Project.model.dto.CustomerDto;
 
 import java.util.List;
@@ -15,6 +15,6 @@ public interface CustomerService {
 
     Customer updateCustomer(Integer id, Customer user);
 
-    void deleteCustomer(String username);
+    void deleteCustomer(Integer id);
 
 }

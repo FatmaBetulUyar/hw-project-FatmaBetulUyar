@@ -1,7 +1,7 @@
 package com.patika.paycore.Project.model.mapper;
 
-import com.patika.paycore.Project.model.Bank;
-import com.patika.paycore.Project.model.Customer;
+import com.patika.paycore.Project.model.entity.Bank;
+import com.patika.paycore.Project.model.entity.Customer;
 import com.patika.paycore.Project.model.dto.CustomerDto;
 
 public class UserMapper {

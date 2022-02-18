@@ -1,7 +1,7 @@
 package com.patika.paycore.Project.service.iml;
 
 import com.patika.paycore.Project.exception.NotFoundException;
-import com.patika.paycore.Project.model.Recipient;
+import com.patika.paycore.Project.model.entity.Recipient;
 import com.patika.paycore.Project.repository.RecipientRepository;
 import com.patika.paycore.Project.service.RecipientService;
 import lombok.RequiredArgsConstructor;

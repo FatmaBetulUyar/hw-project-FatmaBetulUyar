@@ -1,4 +1,4 @@
-package com.patika.paycore.Project.model;
+package com.patika.paycore.Project.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -37,21 +37,21 @@ public class Customer {
  // @Column(name="phone")
     private String phone;
 
-
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
+
     @JsonIgnore
-    @OneToMany(mappedBy = "userTransaction", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "userTransfer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Transfer> transfers;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "userAppointment", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
 }

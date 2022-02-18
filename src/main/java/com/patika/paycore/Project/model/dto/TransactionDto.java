@@ -1,6 +1,6 @@
 package com.patika.paycore.Project.model.dto;
 
-import com.patika.paycore.Project.model.TransactionType;
+import com.patika.paycore.Project.model.entity.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

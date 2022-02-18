@@ -2,8 +2,11 @@ package com.patika.paycore.Project.service.iml;
 
 import com.patika.paycore.Project.exception.InsufficientBalanceException;
 import com.patika.paycore.Project.exception.NotFoundException;
-import com.patika.paycore.Project.model.*;
 import com.patika.paycore.Project.model.dto.TransferDto;
+import com.patika.paycore.Project.model.entity.Customer;
+import com.patika.paycore.Project.model.entity.Recipient;
+import com.patika.paycore.Project.model.entity.Transfer;
+import com.patika.paycore.Project.model.entity.TransferType;
 import com.patika.paycore.Project.repository.RecipientRepository;
 import com.patika.paycore.Project.repository.TransferRepository;
 import com.patika.paycore.Project.service.RecipientService;
@@ -65,7 +68,7 @@ public class TransferServiceImpl implements TransferService {
         recipient1=recipientService.addRecipient(recipient1);
 
         Transfer transfer1=new Transfer();
-        transfer1.setUserTransfer(user);
+        transfer1.setCustomer(user);
         transfer1.setRecipient(recipient1);
         transfer1.setTransferDate(new Date());
         transfer1.setTransferDescription(transfer.getDescription());

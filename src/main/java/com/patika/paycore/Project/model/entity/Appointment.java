@@ -1,4 +1,4 @@
-package com.patika.paycore.Project.model;
+package com.patika.paycore.Project.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +31,6 @@ public class Appointment {
 
    // @JsonManagedReference
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Customer userAppointment;
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer customer;
 }

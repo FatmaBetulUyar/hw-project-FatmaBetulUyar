@@ -1,8 +1,8 @@
 package com.patika.paycore.Project.service;
 
 import com.patika.paycore.Project.exception.InsufficientBalanceException;
-import com.patika.paycore.Project.model.Transaction;
-import com.patika.paycore.Project.model.Customer;
+import com.patika.paycore.Project.model.entity.Transaction;
+import com.patika.paycore.Project.model.entity.Customer;
 import com.patika.paycore.Project.model.dto.TransactionDto;
 
 import java.util.List;

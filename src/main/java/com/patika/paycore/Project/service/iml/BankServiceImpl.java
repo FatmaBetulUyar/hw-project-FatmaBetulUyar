@@ -1,13 +1,13 @@
 package com.patika.paycore.Project.service.iml;
 
 import com.patika.paycore.Project.exception.NotFoundException;
-import com.patika.paycore.Project.model.Account;
-import com.patika.paycore.Project.model.Bank;
-import com.patika.paycore.Project.model.Customer;
+import com.patika.paycore.Project.model.entity.Account;
+import com.patika.paycore.Project.model.entity.Bank;
+import com.patika.paycore.Project.model.entity.Customer;
 import com.patika.paycore.Project.model.dto.CustomerDto;
 import com.patika.paycore.Project.model.mapper.UserMapper;
 import com.patika.paycore.Project.repository.BankRepository;
-import com.patika.paycore.Project.repository.UserRepository;
+import com.patika.paycore.Project.repository.CustomerRepository;
 import com.patika.paycore.Project.service.AccountService;
 import com.patika.paycore.Project.service.BankService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BankServiceImpl implements BankService {
     private final BankRepository bankRepository;
-    private final UserRepository userRepository;
+    private final CustomerRepository customerRepository;
     private final AccountService accountService;
     @Override
     public List<Bank> getAllBanks() {
@@ -66,7 +66,7 @@ public class BankServiceImpl implements BankService {
         account.setBalance(0.0F);
         account = accountService.addAccount(account);
         entity.setAccount(account);
-        entity = userRepository.save(entity);
+        entity = customerRepository.save(entity);
 
 
 

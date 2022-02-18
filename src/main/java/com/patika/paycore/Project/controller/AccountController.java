@@ -1,7 +1,7 @@
 package com.patika.paycore.Project.controller;
 
 
-import com.patika.paycore.Project.model.Account;
+import com.patika.paycore.Project.model.entity.Account;
 import com.patika.paycore.Project.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -2,10 +2,10 @@ package com.patika.paycore.Project.service.iml;
 
 import com.patika.paycore.Project.exception.InsufficientBalanceException;
 import com.patika.paycore.Project.exception.NotFoundException;
-import com.patika.paycore.Project.model.Account;
-import com.patika.paycore.Project.model.Transaction;
-import com.patika.paycore.Project.model.TransactionType;
-import com.patika.paycore.Project.model.Customer;
+import com.patika.paycore.Project.model.entity.Account;
+import com.patika.paycore.Project.model.entity.Transaction;
+import com.patika.paycore.Project.model.entity.TransactionType;
+import com.patika.paycore.Project.model.entity.Customer;
 import com.patika.paycore.Project.model.dto.TransactionDto;
 import com.patika.paycore.Project.repository.TransactionRepository;
 import com.patika.paycore.Project.service.TransactionService;
@@ -37,7 +37,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void addTransaction(TransactionDto transaction) throws InsufficientBalanceException {
 
-        Customer user= customerService.getUser(transaction.getUser_id());
+        Customer user= customerService.getCustomer(transaction.getUser_id());
 
         if(transaction.getTransactionType()== TransactionType.WITHDRAW){
             withDraw(user,transaction.getAmount());
@@ -48,22 +48,12 @@ public class TransactionServiceImpl implements TransactionService {
 
         Transaction transaction1=new Transaction();
         transaction1.setTransactionType(transaction.getTransactionType());
-        transaction1.setTransactionDescription(transaction1.getTransactionDate() + " tarihinde " + transaction.getAmount() +" Tl 'lik işlem yapılmıştır.");
         transaction1.setTransactionDate(new Date());
+        transaction1.setTransactionDescription(transaction1.getTransactionDate() + " tarihinde " + transaction.getAmount() +" TL 'lik işlem yapılmıştır.");
         transaction1.setAmount(transaction.getAmount());
-        transaction1.setUserTransaction(user);
+        transaction1.setCustomer(user);
         transaction1.setIsSuccess(true);
 
-        //Dto oluştur
-        //user ı çağır
-        //iki tane fonksiyon oluştur (para yatır- para çek)
-        //hangi işlem olduğuna bak
-        //para çekmeyse => hesap bakiyesini kontrol et
-        //değilse  =>
-        //user ı kaydet
-        //transaction nesnesi oluştur
-        //transaction bilgilerini set et
-        //transaction kaydet
         transactionRepository.save(transaction1);
     }
 

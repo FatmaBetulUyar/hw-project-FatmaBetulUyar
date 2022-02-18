@@ -1,4 +1,4 @@
-package com.patika.paycore.Project.model;
+package com.patika.paycore.Project.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -31,7 +31,7 @@ public class Account {
 //    private Recipient recipient;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "account",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "account")
     private Customer customer;
 
   //  @NotNull(message = "Bank can not be null !")

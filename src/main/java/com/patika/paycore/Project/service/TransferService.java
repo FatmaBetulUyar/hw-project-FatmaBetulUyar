@@ -1,6 +1,6 @@
 package com.patika.paycore.Project.service;
 
-import com.patika.paycore.Project.model.Transfer;
+import com.patika.paycore.Project.model.entity.Transfer;
 import com.patika.paycore.Project.model.dto.TransferDto;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.patika.paycore.Project.model;
+package com.patika.paycore.Project.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

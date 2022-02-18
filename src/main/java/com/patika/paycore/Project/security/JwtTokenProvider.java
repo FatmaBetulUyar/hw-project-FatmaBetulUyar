@@ -1,7 +1,7 @@
 package com.patika.paycore.Project.security;
 
 import com.patika.paycore.Project.exception.CustomJwtException;
-import com.patika.paycore.Project.model.Role;
+import com.patika.paycore.Project.model.entity.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

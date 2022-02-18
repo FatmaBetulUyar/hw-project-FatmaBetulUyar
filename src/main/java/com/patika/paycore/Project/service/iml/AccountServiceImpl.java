@@ -1,7 +1,7 @@
 package com.patika.paycore.Project.service.iml;
 
 import com.patika.paycore.Project.exception.NotFoundException;
-import com.patika.paycore.Project.model.Account;
+import com.patika.paycore.Project.model.entity.Account;
 import com.patika.paycore.Project.repository.AccountRepository;
 import com.patika.paycore.Project.service.AccountService;
 import lombok.RequiredArgsConstructor;

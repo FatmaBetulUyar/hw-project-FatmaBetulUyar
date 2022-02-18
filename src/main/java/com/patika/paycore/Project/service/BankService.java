@@ -1,6 +1,6 @@
 package com.patika.paycore.Project.service;
 
-import com.patika.paycore.Project.model.Bank;
+import com.patika.paycore.Project.model.entity.Bank;
 import com.patika.paycore.Project.model.dto.CustomerDto;
 
 import java.util.List;

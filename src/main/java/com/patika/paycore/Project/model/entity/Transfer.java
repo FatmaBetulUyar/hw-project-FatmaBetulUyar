@@ -1,4 +1,4 @@
-package com.patika.paycore.Project.model;
+package com.patika.paycore.Project.model.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -41,8 +41,8 @@ public class Transfer {
  //   @NotNull(message = "User can not be null !")
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Customer userTransfer;
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer customer;
 
   //  @NotNull(message = "Recipient can not be null !")
     @ManyToOne(cascade = CascadeType.MERGE)

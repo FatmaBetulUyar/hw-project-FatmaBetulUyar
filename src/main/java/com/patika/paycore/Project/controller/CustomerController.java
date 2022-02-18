@@ -1,6 +1,6 @@
 package com.patika.paycore.Project.controller;
 
-import com.patika.paycore.Project.model.Customer;
+import com.patika.paycore.Project.model.entity.Customer;
 import com.patika.paycore.Project.model.dto.CustomerDto;
 import com.patika.paycore.Project.service.BankService;
 import com.patika.paycore.Project.service.CustomerService;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/customer")
+@RequestMapping(path = "/api/customer")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -45,8 +45,8 @@ public class CustomerController {
     }
 
     @DeleteMapping(value = "/delete")
-    public void deleteUser(@RequestParam String username) {
-         customerService.deleteCustomer(username);
+    public void deleteUser(@RequestParam Integer id) {
+         customerService.deleteCustomer(id);
     }
 
 }
