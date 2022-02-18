@@ -2,6 +2,7 @@ package com.patika.paycore.Project.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,22 +24,28 @@ public class Recipient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "First Name can not be null !")
+  //  @NotNull(message = "First Name can not be null !")
+    @Column(name="firstname")
     private String firstName;
 
-    @NotNull(message = "Last Name can not be null !")
+//    @NotNull(message = "Last Name can not be null !")
+    @Column(name="lastname")
     private String lastName;
 
     @Email
+    @Column(name="email")
     private String email;
 
-    @NotNull(message = "Phone can not be null !")
+ //   @NotNull(message = "Phone can not be null !")
+ //@Column(name="phone")
     private String phone;
 
-    @NotNull(message = "Account number can not be null !")
-    private String accountNumber;
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id",referencedColumnName = "id")
+    private Account account;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "recipient", cascade = CascadeType.MERGE)
     private List<Transfer> transfers;
 

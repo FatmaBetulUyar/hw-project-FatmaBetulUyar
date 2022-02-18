@@ -1,6 +1,7 @@
 package com.patika.paycore.Project.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,35 +23,47 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "First Name can not be null !")
+  //  @NotNull(message = "First Name can not be null !")
+    @Column(name = "firstname")
     private String firstName;
 
-    @NotNull(message = "Last Name can not be null !")
+//    @NotNull(message = "Last Name can not be null !")
+    @Column(name = "lastname")
     private String lastName;
 
-    @NotNull(message = "Email can not be null !")
+    @Column(name = "username")
+    private String userName;
+
+  //  @NotNull(message = "Email can not be null !")
     @Email
+    //@Column(name="email")
     private String email;
 
-    @NotNull(message = "Password can not be null !")
+   // @NotNull(message = "Password can not be null !")
+  // @Column(name="password")
     private String password;
 
-    @NotNull(message = "Phone can not be null !")
+  //  @NotNull(message = "Phone can not be null !")
+ // @Column(name="phone")
     private String phone;
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
-    private Account account;*/
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "userTransaction", cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id",referencedColumnName = "id")
+    private Account account;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "userTransaction", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "userTransfer", cascade = CascadeType.MERGE)
+    @JsonIgnore
+    @OneToMany(mappedBy = "userTransfer", cascade = CascadeType.ALL)
     private List<Transfer> transfers;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "userAppointment", cascade = CascadeType.MERGE)
+    @JsonIgnore
+    @OneToMany(mappedBy = "userAppointment", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    public List<Role> roles;
 }

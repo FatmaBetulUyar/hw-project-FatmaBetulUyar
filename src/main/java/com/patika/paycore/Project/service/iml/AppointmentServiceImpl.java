@@ -26,20 +26,21 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public void addUser(Appointment appointment) {
+    public void addAppointment(Appointment appointment) {
         appointmentRepository.save(appointment);
     }
 
     @Override
-    public Appointment updateUser(Integer id, Appointment appointment) {
+    public Appointment updateAppointment(Integer id, Appointment appointment) {
         getAppointment(id);
         appointment.setId(id);
         return appointmentRepository.save(appointment);
     }
 
     @Override
-    public boolean deleteUser(Integer id) {
+    public boolean deleteAppointment(Integer id) {
         appointmentRepository.delete(getAppointment(id));
         return true;
     }
+
 }

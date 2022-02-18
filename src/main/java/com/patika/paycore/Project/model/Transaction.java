@@ -21,22 +21,26 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "Transaction type can not be null !")
-    private enum transactionType{
-        WITHDRAW,
-        DEPOSIT
-    }
+ //   @NotNull(message = "Transaction type can not be null !")
+    @Enumerated(EnumType.STRING)
+    private TransactionType transactionType;
+  //  @NotNull(message = "Amount can not be null !")
 
-    @NotNull(message = "Amount can not be null !")
+ // @Column(name="amount")
     private Float amount;
 
-    @NotNull(message = "Transaction date can not be null !")
+  //  @NotNull(message = "Transaction date can not be null !")
+    @Column(name="transaction_date")
     private Date transactionDate;
 
-    @NotNull(message = "Transaction description can not be null !")
+ //   @NotNull(message = "Transaction description can not be null !")
+    @Column(name="transaction_description")
     private String transactionDescription;
 
-    @NotNull(message = "User can not be null !")
+    @Column(name = "is_success")
+  private Boolean isSuccess;
+
+ //   @NotNull(message = "User can not be null !")
     @JsonManagedReference
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")

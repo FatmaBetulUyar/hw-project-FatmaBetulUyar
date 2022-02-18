@@ -10,7 +10,7 @@ public interface AccountService {
 
     Account getAccount(Integer id);
 
-    void addAccount(Account account);
+    Account addAccount(Account account);
 
     Account updateAccount(Integer id, Account account);
 

@@ -23,7 +23,7 @@ public class BankController {
         return bankService.getAllBanks();
     }
 
-    @GetMapping(value = "/{id]")
+    @GetMapping(value = "/{id}")
     public Bank getBank(@PathVariable Integer id){
         return bankService.getBank(id);
     }

@@ -1,6 +1,7 @@
 package com.patika.paycore.Project.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,28 +22,32 @@ public class Transfer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "Transfer type can not be null !")
-    private enum transferType{
-        BETWEENACCOUNTS,
-        TOSOMEONE
-    }
-    @NotNull(message = "Amount type can not be null !")
+ //   @NotNull(message = "Transfer type can not be null !")
+    @Enumerated(EnumType.ORDINAL)
+    private TransferType transferType;
+
+//    @NotNull(message = "Amount type can not be null !")
+//@Column(name="amount")
     private Float Amount;
 
-    @NotNull(message = "Transfer date can not be null !")
+ //   @NotNull(message = "Transfer date can not be null !")
+    @Column(name="transfer_date")
     private Date transferDate;
 
-    @NotNull(message = "Transfer description can not be null !")
+ //   @NotNull(message = "Transfer description can not be null !")
+    @Column(name="transfer_description")
     private String transferDescription;
 
-    @NotNull(message = "User can not be null !")
-    @JsonManagedReference
+    @Column(name = "is_success")
+    private Boolean isSuccess;
+
+ //   @NotNull(message = "User can not be null !")
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User userTransfer;
 
-    @NotNull(message = "Recipient can not be null !")
-    @JsonManagedReference
+  //  @NotNull(message = "Recipient can not be null !")
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "recipient_id", referencedColumnName = "id")
     private Recipient recipient;

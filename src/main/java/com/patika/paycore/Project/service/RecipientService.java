@@ -10,7 +10,7 @@ public interface RecipientService {
 
     Recipient getRecipient(Integer id);
 
-    void addRecipient(Recipient recipient);
+    Recipient addRecipient(Recipient recipient);
 
     Recipient updateRecipient(Integer id, Recipient recipient);
 

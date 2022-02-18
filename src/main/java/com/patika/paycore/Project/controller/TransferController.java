@@ -2,6 +2,7 @@ package com.patika.paycore.Project.controller;
 
 import com.patika.paycore.Project.model.Transfer;
 import com.patika.paycore.Project.model.User;
+import com.patika.paycore.Project.model.dto.TransferDto;
 import com.patika.paycore.Project.service.TransactionService;
 import com.patika.paycore.Project.service.TransferService;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +23,14 @@ public class TransferController {
         return transferService.getAllTransfers();
     }
 
-    @GetMapping(value = "/{id]")
+    @GetMapping(value = "/{id}")
     public Transfer getTransfer(@PathVariable Integer id){
         return transferService.getTransfer(id);
     }
+
     @PostMapping(value = "/add")
-    public void saveTransfer(@Valid @RequestBody Transfer transfer){
+    public void saveTransfer(@Valid @RequestBody TransferDto transfer){
+
         transferService.addTransfer(transfer);
     }
 

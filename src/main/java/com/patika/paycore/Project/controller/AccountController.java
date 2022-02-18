@@ -23,13 +23,13 @@ public class AccountController {
         return accountService.getAllAccounts();
     }
 
-    @GetMapping(value = "/{id]")
+    @GetMapping(value = "/{id}")
     public Account getAccount(@PathVariable Integer id){
         return accountService.getAccount(id);
     }
     @PostMapping(value = "/add")
-    public void saveAccount(@Valid @RequestBody Account account){
-        accountService.addAccount(account);
+    public Account saveAccount(@Valid @RequestBody Account account){
+         return accountService.addAccount(account);
     }
 
     @PutMapping(value = "/update/{id}")

@@ -22,7 +22,7 @@ public class AppointmentController {
         return appointmentService.getAllAppointments();
     }
 
-    @GetMapping(value = "/{id]")
+    @GetMapping(value = "/{id}")
     public Appointment getAppointment(@PathVariable Integer id){
         return appointmentService.getAppointment(id);
     }

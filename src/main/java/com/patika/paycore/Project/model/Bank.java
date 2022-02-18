@@ -18,6 +18,6 @@ public class Bank {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "Name can not be null !")
+  //  @NotNull(message = "Name can not be null !")
    private String name;
 }

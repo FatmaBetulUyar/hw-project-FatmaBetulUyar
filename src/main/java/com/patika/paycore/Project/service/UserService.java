@@ -1,6 +1,7 @@
 package com.patika.paycore.Project.service;
 
 import com.patika.paycore.Project.model.User;
+import com.patika.paycore.Project.model.dto.UserDto;
 
 import java.util.List;
 
@@ -10,9 +11,13 @@ public interface UserService {
 
     User getUser(Integer id);
 
-    void addUser(User user);
+    void addUser(UserDto user);
 
     User updateUser(Integer id, User user);
 
-    boolean deleteUser(Integer id);
+    void deleteUser(String username);
+
+    public String signin(String username,String password);
+
+    public String signup(User user);
 }

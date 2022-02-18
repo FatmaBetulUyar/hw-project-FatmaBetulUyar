@@ -26,8 +26,8 @@ public class RecipientServiceImpl implements RecipientService {
     }
 
     @Override
-    public void addRecipient(Recipient recipient) {
-        recipientRepository.save(recipient);
+    public Recipient addRecipient(Recipient recipient) {
+       return recipientRepository.save(recipient);
     }
 
     @Override

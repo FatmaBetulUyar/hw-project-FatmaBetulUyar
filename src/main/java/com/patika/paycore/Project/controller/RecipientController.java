@@ -23,13 +23,13 @@ public class RecipientController {
         return recipientService.getAllRecipients();
     }
 
-    @GetMapping(value = "/{id]")
+    @GetMapping(value = "/{id}")
     public Recipient getRecipient(@PathVariable Integer id){
         return recipientService.getRecipient(id);
     }
     @PostMapping(value = "/add")
-    public void saveRecipient(@Valid @RequestBody Recipient recipient){
-        recipientService.addRecipient(recipient);
+    public Recipient saveRecipient(@Valid @RequestBody Recipient recipient){
+      return recipientService.addRecipient(recipient);
     }
 
     @PutMapping(value = "/update/{id}")

@@ -10,9 +10,9 @@ public interface AppointmentService {
 
     Appointment getAppointment(Integer id);
 
-    void addUser(Appointment appointment);
+    void addAppointment(Appointment appointment);
 
-    Appointment updateUser(Integer id, Appointment appointment);
+    Appointment updateAppointment(Integer id, Appointment appointment);
 
-    boolean deleteUser(Integer id);
+    boolean deleteAppointment(Integer id);
 }
