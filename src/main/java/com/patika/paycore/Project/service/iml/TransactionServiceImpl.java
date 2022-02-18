@@ -5,12 +5,11 @@ import com.patika.paycore.Project.exception.NotFoundException;
 import com.patika.paycore.Project.model.Account;
 import com.patika.paycore.Project.model.Transaction;
 import com.patika.paycore.Project.model.TransactionType;
-import com.patika.paycore.Project.model.User;
+import com.patika.paycore.Project.model.Customer;
 import com.patika.paycore.Project.model.dto.TransactionDto;
-import com.patika.paycore.Project.model.mapper.UserMapper;
 import com.patika.paycore.Project.repository.TransactionRepository;
 import com.patika.paycore.Project.service.TransactionService;
-import com.patika.paycore.Project.service.UserService;
+import com.patika.paycore.Project.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,7 @@ import java.util.Optional;
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRepository transactionRepository;
-    private final UserService userService;
+    private final CustomerService customerService;
     @Override
     public List<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
@@ -38,7 +37,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void addTransaction(TransactionDto transaction) throws InsufficientBalanceException {
 
-        User user=userService.getUser(transaction.getUser_id());
+        Customer user= customerService.getUser(transaction.getUser_id());
 
         if(transaction.getTransactionType()== TransactionType.WITHDRAW){
             withDraw(user,transaction.getAmount());
@@ -85,7 +84,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void withDraw(User user ,Float amount) throws InsufficientBalanceException {
+    public void withDraw(Customer user , Float amount) throws InsufficientBalanceException {
 
         if (user.getAccount().getBalance()<amount){
            throw new InsufficientBalanceException();
@@ -99,7 +98,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void deposit(User user,Float amount) {
+    public void deposit(Customer user, Float amount) {
         Float totalAmount=user.getAccount().getBalance()+amount;
         Account account=user.getAccount();
         account.setBalance(totalAmount);

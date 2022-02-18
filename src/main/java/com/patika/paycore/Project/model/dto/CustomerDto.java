@@ -4,13 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Email;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class CustomerDto {
 
     private Integer id;
 
@@ -18,11 +15,7 @@ public class UserDto {
 
     private String lastName;
 
-    private String userName;
-
     private String email;
-
-    private String password;
 
     private String phone;
 

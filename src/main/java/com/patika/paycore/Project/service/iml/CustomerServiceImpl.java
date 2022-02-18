@@ -2,16 +2,13 @@ package com.patika.paycore.Project.service.iml;
 
 import com.patika.paycore.Project.exception.CustomJwtException;
 import com.patika.paycore.Project.exception.NotFoundException;
-import com.patika.paycore.Project.model.Account;
-import com.patika.paycore.Project.model.Role;
-import com.patika.paycore.Project.model.User;
-import com.patika.paycore.Project.model.dto.UserDto;
-import com.patika.paycore.Project.model.mapper.UserMapper;
+import com.patika.paycore.Project.model.Customer;
+import com.patika.paycore.Project.model.dto.CustomerDto;
 import com.patika.paycore.Project.repository.RoleRepository;
 import com.patika.paycore.Project.repository.UserRepository;
 import com.patika.paycore.Project.security.JwtTokenProvider;
 import com.patika.paycore.Project.service.BankService;
-import com.patika.paycore.Project.service.UserService;
+import com.patika.paycore.Project.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,14 +17,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class CustomerServiceImpl implements CustomerService {
 
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
@@ -47,48 +43,28 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<Customer> getAllCustomers() {
         return userRepository.findAll();
     }
 
     @Override
-    public User getUser(Integer id) {
-        Optional<User> byId=userRepository.findById(id);
+    public Customer getCustomer(Integer id) {
+        Optional<Customer> byId=userRepository.findById(id);
         return byId.orElseThrow(()->new NotFoundException("User"));
     }
 
-    public String signin(String username,String password){
-        try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
-            return jwtTokenProvider.createToken(username,userRepository.findByUserName(username).getRoles());
-        }catch (AuthenticationException e){
-            throw new CustomJwtException("Invalid username/password supplied", HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    public String signup(User user) {
-        if (!userRepository.existsByUserName(user.getUserName())) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRoles(Collections.singletonList(roleRepository.getById(2)));
-            userRepository.save(user);
-            return jwtTokenProvider.createToken(user.getUserName(), user.getRoles());
-        } else {
-            throw new CustomJwtException("Username is already in use", HttpStatus.BAD_REQUEST);
-        }
-    }
-
 
     @Override
-    public void addUser(UserDto user) {
+    public void addCustomer(CustomerDto user) {
         bankService.addNewAccount(user);
     }
     @Override
-    public User updateUser(Integer id, User user) {
-        getUser(id);
+    public Customer updateCustomer(Integer id, Customer user) {
+        getCustomer(id);
         user.setId(id);
         return userRepository.save(user);
     }
-    public void deleteUser(String username) {
+    public void deleteCustomer(String username) {
         if (!userRepository.existsByUserName(username)) {
             userRepository.deleteByUserName(username);
         } else {

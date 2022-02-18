@@ -1,31 +1,27 @@
 package com.patika.paycore.Project.model.mapper;
 
 import com.patika.paycore.Project.model.Bank;
-import com.patika.paycore.Project.model.User;
-import com.patika.paycore.Project.model.dto.UserDto;
+import com.patika.paycore.Project.model.Customer;
+import com.patika.paycore.Project.model.dto.CustomerDto;
 
 public class UserMapper {
-    public static UserDto toDto(User user){
-        UserDto userDto=new UserDto();
+    public static CustomerDto toDto(Customer user){
+        CustomerDto customerDto =new CustomerDto();
         Bank bank=new Bank();
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setUserName(user.getUserName());
-        userDto.setEmail(user.getEmail());
-        userDto.setPassword(user.getPassword());
-        userDto.setPhone(user.getPhone());
-        userDto.setBankName(bank.getName());
-        return userDto;
+        customerDto.setFirstName(user.getFirstName());
+        customerDto.setLastName(user.getLastName());
+        customerDto.setEmail(user.getEmail());
+        customerDto.setPhone(user.getPhone());
+        customerDto.setBankName(bank.getName());
+        return customerDto;
     }
 
-    public static User toEntity(UserDto userDto){
-        User user =new User();
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
-        user.setUserName(userDto.getUserName());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
-        user.setPhone(userDto.getPhone());
+    public static Customer toEntity(CustomerDto customerDto){
+        Customer user =new Customer();
+        user.setFirstName(customerDto.getFirstName());
+        user.setLastName(customerDto.getLastName());
+        user.setEmail(customerDto.getEmail());
+        user.setPhone(customerDto.getPhone());
         return user;
     }
 

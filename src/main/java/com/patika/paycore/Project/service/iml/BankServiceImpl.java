@@ -3,21 +3,18 @@ package com.patika.paycore.Project.service.iml;
 import com.patika.paycore.Project.exception.NotFoundException;
 import com.patika.paycore.Project.model.Account;
 import com.patika.paycore.Project.model.Bank;
-import com.patika.paycore.Project.model.User;
-import com.patika.paycore.Project.model.dto.UserDto;
+import com.patika.paycore.Project.model.Customer;
+import com.patika.paycore.Project.model.dto.CustomerDto;
 import com.patika.paycore.Project.model.mapper.UserMapper;
-import com.patika.paycore.Project.repository.AccountRepository;
 import com.patika.paycore.Project.repository.BankRepository;
 import com.patika.paycore.Project.repository.UserRepository;
 import com.patika.paycore.Project.service.AccountService;
 import com.patika.paycore.Project.service.BankService;
-import com.patika.paycore.Project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -56,11 +53,11 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public void addNewAccount(UserDto userDto) {
-        User entity = new User();
+    public void addNewAccount(CustomerDto customerDto) {
+        Customer entity = new Customer();
         Account account = new Account();
-        entity = UserMapper.toEntity(userDto);
-        Bank bank = bankRepository.findByName(userDto.getBankName());
+        entity = UserMapper.toEntity(customerDto);
+        Bank bank = bankRepository.findByName(customerDto.getBankName());
 
         // account.setUser(entity);
         UUID uuid = UUID.randomUUID();

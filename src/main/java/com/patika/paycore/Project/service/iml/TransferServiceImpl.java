@@ -4,12 +4,11 @@ import com.patika.paycore.Project.exception.InsufficientBalanceException;
 import com.patika.paycore.Project.exception.NotFoundException;
 import com.patika.paycore.Project.model.*;
 import com.patika.paycore.Project.model.dto.TransferDto;
-import com.patika.paycore.Project.model.mapper.UserMapper;
 import com.patika.paycore.Project.repository.RecipientRepository;
 import com.patika.paycore.Project.repository.TransferRepository;
 import com.patika.paycore.Project.service.RecipientService;
 import com.patika.paycore.Project.service.TransferService;
-import com.patika.paycore.Project.service.UserService;
+import com.patika.paycore.Project.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ import java.util.Optional;
 public class TransferServiceImpl implements TransferService {
     private final TransferRepository transferRepository;
     private final RecipientRepository recipientRepository;
-    private final UserService userService;
+    private final CustomerService customerService;
     private final RecipientService recipientService;
     @Override
     public List<Transfer> getAllTransfers() {
@@ -38,12 +37,12 @@ public class TransferServiceImpl implements TransferService {
     @Override
     public void addTransfer(TransferDto transfer) {
 
-        User user= userService.getUser(transfer.getUser_id());
+        Customer user= customerService.getCustomer(transfer.getUser_id());
 
         if(user.getAccount().getBalance() < transfer.getAmount()){
             new InsufficientBalanceException();
         }
-        User recipient=userService.getUser(transfer.getRecipient_id()) ;
+        Customer recipient= customerService.getCustomer(transfer.getRecipient_id()) ;
         //recipient user mapper
         // user recipient olarak kaydet
         Float transactionForUser=user.getAccount().getBalance()-transfer.getAmount();
@@ -53,8 +52,8 @@ public class TransferServiceImpl implements TransferService {
         user.getAccount().setBalance(transactionForUser);
         //user ve recipient veritabanına kaydedilecek
 
-        userService.updateUser(user.getId(),user);
-        userService.updateUser(recipient.getId(),recipient);
+        customerService.updateCustomer(user.getId(),user);
+        customerService.updateCustomer(recipient.getId(),recipient);
 
         Recipient recipient1=new Recipient();
         recipient1.setAccount(recipient.getAccount());

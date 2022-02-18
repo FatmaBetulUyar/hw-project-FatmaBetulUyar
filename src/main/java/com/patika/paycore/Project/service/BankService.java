@@ -1,8 +1,7 @@
 package com.patika.paycore.Project.service;
 
-import com.patika.paycore.Project.model.Account;
 import com.patika.paycore.Project.model.Bank;
-import com.patika.paycore.Project.model.dto.UserDto;
+import com.patika.paycore.Project.model.dto.CustomerDto;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public interface BankService {
 
     boolean deleteBank(Integer id);
 
-    void addNewAccount(UserDto userDto);
+    void addNewAccount(CustomerDto customerDto);
 
   //  Bank getBankByName(String bankName);
 }

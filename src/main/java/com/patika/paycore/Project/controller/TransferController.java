@@ -1,9 +1,7 @@
 package com.patika.paycore.Project.controller;
 
 import com.patika.paycore.Project.model.Transfer;
-import com.patika.paycore.Project.model.User;
 import com.patika.paycore.Project.model.dto.TransferDto;
-import com.patika.paycore.Project.service.TransactionService;
 import com.patika.paycore.Project.service.TransferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

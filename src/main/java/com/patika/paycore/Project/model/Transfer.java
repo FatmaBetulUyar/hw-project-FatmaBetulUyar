@@ -1,14 +1,11 @@
 package com.patika.paycore.Project.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -45,7 +42,7 @@ public class Transfer {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User userTransfer;
+    private Customer userTransfer;
 
   //  @NotNull(message = "Recipient can not be null !")
     @ManyToOne(cascade = CascadeType.MERGE)

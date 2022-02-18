@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,7 +32,7 @@ public class Account {
 
     @JsonIgnore
     @OneToOne(mappedBy = "account",cascade = CascadeType.ALL)
-    private User user;
+    private Customer customer;
 
   //  @NotNull(message = "Bank can not be null !")
     @OneToOne(cascade = CascadeType.ALL)

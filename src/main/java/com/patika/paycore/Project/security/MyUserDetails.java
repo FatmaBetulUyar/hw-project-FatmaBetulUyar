@@ -1,7 +1,7 @@
 package com.patika.paycore.Project.security;
 
 
-import com.patika.paycore.Project.model.User;
+import com.patika.paycore.Project.model.Customer;
 import com.patika.paycore.Project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +16,7 @@ public class MyUserDetails implements UserDetailsService {
 
     @Override
     public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-       User user=userRepository.findByUserName((username));
+       Customer user=userRepository.findByUserName((username));
 
        if(user==null){
            throw new UsernameNotFoundException("User"+username+" not found");

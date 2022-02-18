@@ -1,7 +1,6 @@
 package com.patika.paycore.Project.service;
 
 import com.patika.paycore.Project.model.Recipient;
-import com.patika.paycore.Project.model.User;
 
 import java.util.List;
 
