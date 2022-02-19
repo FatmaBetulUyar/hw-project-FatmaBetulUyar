@@ -30,15 +30,11 @@ public class TransactionController {
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<?> saveTransaction(@Valid @RequestBody TransactionDto transaction){
+    public ResponseEntity<?> saveTransaction(@Valid @RequestBody TransactionDto transaction) throws InsufficientBalanceException {
         ResponseEntity<?> response;
-        try {
-            transactionService.addTransaction(transaction);
-            response= new ResponseEntity<>(HttpStatus.OK);
-        } catch (InsufficientBalanceException exception) {
-            response =new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
-        }
-        return response;
+        transactionService.addTransaction(transaction);
+          response= new ResponseEntity<>(HttpStatus.OK);
+       return response;
     }
 
 

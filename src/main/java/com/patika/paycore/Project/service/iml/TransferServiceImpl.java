@@ -38,47 +38,47 @@ public class TransferServiceImpl implements TransferService {
     }
 
     @Override
-    public void addTransfer(TransferDto transfer) throws InsufficientBalanceException {
+    public void addTransfer(TransferDto transferDto) throws InsufficientBalanceException {
 
-        Customer user= customerService.getCustomer(transfer.getUser_id());
+        Customer user= customerService.getCustomer(transferDto.getUser_id());
 
-        if(user.getAccount().getBalance() < transfer.getAmount()){
+        if(user.getAccount().getBalance() < transferDto.getAmount()){
            throw  new InsufficientBalanceException();
         }
-        Customer recipient= customerService.getCustomer(transfer.getRecipient_id()) ;
+        Customer recipientCustomer= customerService.getCustomer(transferDto.getRecipient_id()) ;
 
-        Float transactionForUser=user.getAccount().getBalance()-transfer.getAmount();
-        Float transactionForRecipient=recipient.getAccount().getBalance()+transfer.getAmount();
+        Float transactionForUser=user.getAccount().getBalance()-transferDto.getAmount();
+        Float transactionForRecipient=recipientCustomer.getAccount().getBalance()+transferDto.getAmount();
 
-        recipient.getAccount().setBalance(transactionForRecipient);
+        recipientCustomer.getAccount().setBalance(transactionForRecipient);
         user.getAccount().setBalance(transactionForUser);
 
         customerService.updateCustomer(user.getId(),user);
-        customerService.updateCustomer(recipient.getId(),recipient);
+        customerService.updateCustomer(recipientCustomer.getId(),recipientCustomer);
 
-        Recipient recipient1=new Recipient();
-        recipient1.setAccount(recipient.getAccount());
-        recipient1.setEmail(recipient.getEmail());
-        recipient1.setFirstName(recipient.getFirstName());
-        recipient1.setLastName(recipient.getLastName());
-        recipient1.setPhone(recipient.getPhone());
+        Recipient recipient=new Recipient();
+        recipient.setAccount(recipientCustomer.getAccount());
+        recipient.setEmail(recipientCustomer.getEmail());
+        recipient.setFirstName(recipientCustomer.getFirstName());
+        recipient.setLastName(recipientCustomer.getLastName());
+        recipient.setPhone(recipientCustomer.getPhone());
 
-        recipient1=recipientService.addRecipient(recipient1);
+        recipient=recipientService.addRecipient(recipient);
 
-        Transfer transfer1=new Transfer();
-        transfer1.setCustomer(user);
-        transfer1.setRecipient(recipient1);
-        transfer1.setTransferDate(new Date());
-        transfer1.setTransferDescription(transfer.getDescription());
-        transfer1.setAmount(transfer.getAmount());
-        transfer1.setIsSuccess(true);
-        if(user.getAccount().getBank().getName()==recipient.getAccount().getBank().getName()){
-            transfer1.setTransferType(TransferType.BETWEENACCOUNTS);
+        Transfer transfer=new Transfer();
+        transfer.setCustomer(user);
+        transfer.setRecipient(recipient);
+        transfer.setTransferDate(new Date());
+        transfer.setTransferDescription(transferDto.getDescription());
+        transfer.setAmount(transferDto.getAmount());
+        transfer.setIsSuccess(true);
+        if(user.getAccount().getBank().getName()==recipientCustomer.getAccount().getBank().getName()){
+            transfer.setTransferType(TransferType.BETWEENACCOUNTS);
         }
         else {
-            transfer1.setTransferType(TransferType.TOSOMEONE);
+            transfer.setTransferType(TransferType.TOSOMEONE);
         }
-        transferRepository.save(transfer1);
+        transferRepository.save(transfer);
 
     }
 
