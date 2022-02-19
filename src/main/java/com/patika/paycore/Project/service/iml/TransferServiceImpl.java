@@ -46,17 +46,15 @@ public class TransferServiceImpl implements TransferService {
             new InsufficientBalanceException();
         }
         Customer recipient= customerService.getCustomer(transfer.getRecipient_id()) ;
-        //recipient user mapper
-        // user recipient olarak kaydet
+
         Float transactionForUser=user.getAccount().getBalance()-transfer.getAmount();
         Float transactionForRecipient=recipient.getAccount().getBalance()+transfer.getAmount();
 
         recipient.getAccount().setBalance(transactionForRecipient);
         user.getAccount().setBalance(transactionForUser);
-        //user ve recipient veritabanına kaydedilecek
 
         customerService.updateCustomer(user.getId(),user);
-        customerService.updateCustomer(recipient.getId(),recipient);
+     //   customerService.updateCustomer(recipient.getId(),recipient);
 
         Recipient recipient1=new Recipient();
         recipient1.setAccount(recipient.getAccount());
@@ -81,18 +79,6 @@ public class TransferServiceImpl implements TransferService {
             transfer1.setTransferType(TransferType.TOSOMEONE);
         }
         transferRepository.save(transfer1);
-
-
-        //1.Kullanıcıyı çağır
-        //2.user account çağır
-        //3.user account içindeki amount kontrol et
-        //4.Hesabında para varsa  recipient account çağır
-        //5.user accounttan o miktarı sil
-        //6.recipient accountta o miktarı arttır
-        //7.Yeni bir transfer objesi oluştur
-        //8.İçini doldur(tarih ..)
-        //9.Transfer objesini kaydet
-        // transferRepository.save(transfer);
 
     }
 

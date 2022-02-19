@@ -1,8 +1,5 @@
 package com.patika.paycore.Project.config;
 
-import com.patika.paycore.Project.security.JwtTokenFilterConfigurer;
-import com.patika.paycore.Project.security.JwtTokenProvider;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -11,44 +8,30 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Profile("test")
+@Profile("local")
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfigLocal extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        // Entry points
+        http.csrf().disable().authorizeRequests().anyRequest().permitAll();
 
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        http.authorizeRequests()
-//                .antMatchers("/users/signin").permitAll()
-//                .antMatchers("/users/signup").permitAll()
-//                .antMatchers("/api/customer/**").permitAll()
-//                .antMatchers("/api/**").permitAll()
-                .anyRequest().authenticated();
-
-        http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
 
-    @Bean
     @Override
+    @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 }
-
-
