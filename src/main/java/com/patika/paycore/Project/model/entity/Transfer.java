@@ -19,32 +19,24 @@ public class Transfer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
- //   @NotNull(message = "Transfer type can not be null !")
     @Enumerated(EnumType.ORDINAL)
     private TransferType transferType;
 
-//    @NotNull(message = "Amount type can not be null !")
-//@Column(name="amount")
     private Float Amount;
 
- //   @NotNull(message = "Transfer date can not be null !")
     @Column(name="transfer_date")
     private Date transferDate;
 
- //   @NotNull(message = "Transfer description can not be null !")
     @Column(name="transfer_description")
     private String transferDescription;
 
     @Column(name = "is_success")
     private Boolean isSuccess;
 
- //   @NotNull(message = "User can not be null !")
-
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
-  //  @NotNull(message = "Recipient can not be null !")
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "recipient_id", referencedColumnName = "id")
     private Recipient recipient;

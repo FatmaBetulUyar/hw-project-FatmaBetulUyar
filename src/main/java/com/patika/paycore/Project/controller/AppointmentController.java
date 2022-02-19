@@ -1,8 +1,11 @@
 package com.patika.paycore.Project.controller;
 
+import com.patika.paycore.Project.exception.NotFoundException;
 import com.patika.paycore.Project.model.entity.Appointment;
 import com.patika.paycore.Project.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,13 +24,28 @@ public class AppointmentController {
     }
 
     @GetMapping(value = "/{id}")
-    public Appointment getAppointment(@PathVariable Integer id){
-        return appointmentService.getAppointment(id);
+    public ResponseEntity<?> getAppointment(@PathVariable Integer id){
+        ResponseEntity<?> response;
+        try {
+            appointmentService.getAppointment(id);
+            response= new ResponseEntity<>(HttpStatus.OK);
+        }catch (NotFoundException exception){
+            response =new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
+
     @PostMapping(value = "/add")
-    public void saveAppointment(@Valid @RequestBody Appointment appointment){
-        appointmentService.addAppointment(appointment);
-    }
+    public  ResponseEntity<?> saveAppointment(@Valid @RequestBody Appointment appointment){
+            ResponseEntity<?> response;
+            try {
+                appointmentService.addAppointment(appointment);
+                response= new ResponseEntity<>(HttpStatus.OK);
+            }catch (NotFoundException exception){
+                response =new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
+            }
+            return response;
+        }
 
     @PutMapping(value = "/update/{id}")
     public Appointment updateAppointment(@PathVariable Integer id, @Valid @RequestBody Appointment appointment) {

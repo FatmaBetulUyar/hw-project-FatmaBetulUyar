@@ -21,11 +21,9 @@ public class Recipient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-  //  @NotNull(message = "First Name can not be null !")
     @Column(name="firstname")
     private String firstName;
 
-//    @NotNull(message = "Last Name can not be null !")
     @Column(name="lastname")
     private String lastName;
 
@@ -33,11 +31,9 @@ public class Recipient {
     @Column(name="email")
     private String email;
 
- //   @NotNull(message = "Phone can not be null !")
- //@Column(name="phone")
     private String phone;
 
-    @JsonIgnore
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account account;

@@ -1,9 +1,12 @@
 package com.patika.paycore.Project.controller;
 
 
+import com.patika.paycore.Project.exception.NotFoundException;
 import com.patika.paycore.Project.model.entity.Bank;
 import com.patika.paycore.Project.service.BankService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,12 +25,27 @@ public class BankController {
     }
 
     @GetMapping(value = "/{id}")
-    public Bank getBank(@PathVariable Integer id){
-        return bankService.getBank(id);
+    public ResponseEntity<?>  getBank(@PathVariable Integer id){
+        ResponseEntity<?> response;
+        try {
+            bankService.getBank(id);
+            response= new ResponseEntity<>(HttpStatus.OK);
+        }catch (NotFoundException exception){
+            response =new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
+
     @PostMapping(value = "/add")
-    public void saveBank(@Valid @RequestBody Bank bank){
-        bankService.addBank(bank);
+    public ResponseEntity<?> saveBank(@Valid @RequestBody Bank bank){
+        ResponseEntity<?> response;
+        try {
+            bankService.addBank(bank);
+            response= new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception exception){
+            response =new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
 
     @PutMapping(value = "/update/{id}")

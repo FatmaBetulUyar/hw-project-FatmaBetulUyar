@@ -26,10 +26,10 @@ public class TransactionProducer {
 //        return "Success";
   //  }
 
-    @PostMapping("/transaction/{id}")
-    public String publishTransaction(@PathVariable Integer id) {
-        Transaction transaction = transactionService.getTransaction(id);
-        template.convertAndSend(RabbitMQConfig.EXCHANGE, RabbitMQConfig.ROUTING_KEY, transaction);
-        return "Success";
-    }
+//    @PostMapping("/transaction/{id}")
+//    public String publishTransaction(@PathVariable Integer id) {
+//        Transaction transaction = transactionService.getTransaction(id);
+//        template.convertAndSend(RabbitMQConfig.EXCHANGE, RabbitMQConfig.ROUTING_KEY, transaction);
+//        return "Success";
+//    }
 }

@@ -1,5 +1,6 @@
 package com.patika.paycore.Project.service;
 
+import com.patika.paycore.Project.exception.InsufficientBalanceException;
 import com.patika.paycore.Project.model.entity.Transfer;
 import com.patika.paycore.Project.model.dto.TransferDto;
 
@@ -10,7 +11,7 @@ public interface TransferService {
 
     Transfer getTransfer(Integer id);
 
-    void addTransfer(TransferDto transfer);
+    void addTransfer(TransferDto transfer) throws InsufficientBalanceException;
 
     Transfer updateTransfer(Integer id, Transfer transfer);
 

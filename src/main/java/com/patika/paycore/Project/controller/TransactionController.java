@@ -31,13 +31,17 @@ public class TransactionController {
 
     @PostMapping(value = "/add")
     public ResponseEntity<?> saveTransaction(@Valid @RequestBody TransactionDto transaction){
+        ResponseEntity<?> response;
         try {
             transactionService.addTransaction(transaction);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (InsufficientBalanceException e) {
-            return new ResponseEntity<>("bakiye yetersiz!",HttpStatus.BAD_REQUEST);
+            response= new ResponseEntity<>(HttpStatus.OK);
+        } catch (InsufficientBalanceException exception) {
+            response =new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
         }
+        return response;
     }
+
+
 
     @PutMapping(value = "/update/{id}")
     public Transaction updateTransaction(@PathVariable Integer id, @Valid @RequestBody Transaction transaction) {

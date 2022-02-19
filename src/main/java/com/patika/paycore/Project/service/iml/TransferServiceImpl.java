@@ -38,12 +38,12 @@ public class TransferServiceImpl implements TransferService {
     }
 
     @Override
-    public void addTransfer(TransferDto transfer) {
+    public void addTransfer(TransferDto transfer) throws InsufficientBalanceException {
 
         Customer user= customerService.getCustomer(transfer.getUser_id());
 
         if(user.getAccount().getBalance() < transfer.getAmount()){
-            new InsufficientBalanceException();
+           throw  new InsufficientBalanceException();
         }
         Customer recipient= customerService.getCustomer(transfer.getRecipient_id()) ;
 
@@ -54,7 +54,7 @@ public class TransferServiceImpl implements TransferService {
         user.getAccount().setBalance(transactionForUser);
 
         customerService.updateCustomer(user.getId(),user);
-     //   customerService.updateCustomer(recipient.getId(),recipient);
+        customerService.updateCustomer(recipient.getId(),recipient);
 
         Recipient recipient1=new Recipient();
         recipient1.setAccount(recipient.getAccount());

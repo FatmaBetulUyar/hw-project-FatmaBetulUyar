@@ -21,7 +21,6 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-  //  @NotNull(message = "First Name can not be null !")
     @Column(name = "firstname")
     private String firstName;
 
@@ -35,7 +34,6 @@ public class Customer implements Serializable {
     private String email;
 
   //  @NotNull(message = "Phone can not be null !")
- // @Column(name="phone")
     private String phone;
 
     @OneToOne(cascade = CascadeType.ALL)
