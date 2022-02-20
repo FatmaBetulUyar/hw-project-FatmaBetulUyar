@@ -12,7 +12,7 @@ public interface TransactionService {
 
     Transaction getTransaction(Integer id);
 
-    void addTransaction(TransactionDto transaction) throws InsufficientBalanceException;
+    Transaction addTransaction(TransactionDto transaction) throws InsufficientBalanceException;
 
     Transaction updateTransaction(Integer id, Transaction transaction);
 

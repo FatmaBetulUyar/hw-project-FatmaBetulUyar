@@ -35,7 +35,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void addTransaction(TransactionDto transaction) throws InsufficientBalanceException {
+    public Transaction addTransaction(TransactionDto transaction) throws InsufficientBalanceException {
 
         Customer user= customerService.getCustomer(transaction.getUser_id());
 
@@ -54,7 +54,7 @@ public class TransactionServiceImpl implements TransactionService {
         transaction1.setCustomer(user);
         transaction1.setIsSuccess(true);
 
-        transactionRepository.save(transaction1);
+      return  transactionRepository.save(transaction1);
     }
 
 
